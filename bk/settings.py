@@ -137,7 +137,7 @@ MEDIA_DIR = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # 博客日志配置
-BASE_LOG_DIR = os.path.joib(BASE_DIR, "log")
+BASE_LOG_DIR = os.path.join(BASE_DIR, "log")
 
 LOGGING = {
     'version': 1,  # 保留的参数，默认为1
@@ -203,11 +203,11 @@ LOGGING = {
         'encoding': 'utf-8',
     },
 
-    'loggers': {
-        '': {
-            'handlers': ['default', 'console', 'error'],
-            'level': 'DEBUG',
-            'propagate': True,  # 表示如果有父级的logger实例，要不要向上传递日志流
-        },
-    },
+    # 'loggers': {
+    #     '': {
+    #         'handlers': ['default', 'console', 'error'],
+    #         'level': 'DEBUG',
+    #         'propagate': True,  # 表示如果有父级的logger实例，要不要向上传递日志流
+    #     },
+    # },
 }
