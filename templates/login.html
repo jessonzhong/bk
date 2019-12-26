@@ -49,7 +49,41 @@
 // 事件绑定
 <script>
     $("#login-button").click(function () {
+        // 取到用户填写的用户名和密码 -- 取input框的内容
+        var username = $("#username").val();
+        var password = $("#password").val();
+        var valid_code = $("#valid_code").val();
 
+        // 用ajax发送到服务端
+        $.ajax({
+            url:"/login/",
+            type:"post",
+            data:{
+                "username": username,
+                "password": password,
+                "valid_code": valid_code,
+                "csrfmiddlewaretoken":$("[name= 'csrfmiddlewaretoken']").val()
+            },
+            success: function (data) {
+                console.log(data);
+                if (data.status){
+
+                    $(".login-error").text(data.msg);  // 有错误，在页面上展示
+                }else {
+                    location.href = data.msg;  //登录成功
+                }
+            }
+        })
+    });
+
+     // input框获取焦点时清空之前的错误
+    $("#username, #password").focus(function () {
+        $(".login-error").text("");  // 清除之前的错误
+    });
+
+    // 点击验证码图片，刷新验证码
+    $("#valid_code").click(function () {
+        $(this)[0].src += "?";
     })
 </script>
 
