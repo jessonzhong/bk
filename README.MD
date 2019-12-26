@@ -8,7 +8,7 @@
 实现登录、注册、注销，浏览文章、编写文章、发布文章，点赞与负赞取消赞的效果
 
 ---
-###安装要求
+安装要求
 - 下载安装Pycharm
 - 下载安装python 3.6
 - 下载安装MySql
@@ -16,7 +16,7 @@
 - 下载Kindeditor编辑器
 
 ---
-###安装依赖的库
+安装依赖的库
 <pre name = "code" class = "python">
 pip install Django==1.11.11
 pip install PyMySql
@@ -29,17 +29,17 @@ pip install beautifulsoup4
 
 
 ---
-###使用到的框架
+使用到的框架
 - Django框架
 - Bootstrap框架
 
 ---
-###版本控制
+版本控制
 
 - 使用git进行版本控制
 
 ---
-###项目目录结构
+项目目录结构
  .  
 │  README.MD  
 │  manage.py  
