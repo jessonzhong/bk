@@ -3,10 +3,11 @@
 
 {% block page-main %}
     <!-- 个人博客列表 -->
-    <div class="article-list">
+       <div class="article-list">
         {% for article in article_list %}
             <div class="article">
-                <p class="article-title"><a href="/blog/{{ article.user.username }}/article/{{ article.pk }}/">{{ article.title }}</a></p>
+                <p class="article-title"><a
+                        href="/blog/{{ article.user.username }}/article/{{ article.pk }}/">{{ article.title }}</a></p>
                 <div class="media">
                     <div class="media-left">
                         <a href="#">
@@ -22,13 +23,12 @@
                     <span>{{ article.create_time|date:'Y-m-d H:i:s' }}</span>
                     <span><i class="fa fa-commenting-o fa-fw"
                              aria-hidden="true"></i>评论({{ article.comment_count }})</span>
-                    <span><i class="fa fa-commenting-o-up fa-fw"
+                    <span><i class="fa fa-thumbs-o-up fa-fw"
                              aria-hidden="true"></i>点赞({{ article.up_count }})</span>
                 </div>
                 <hr>
             </div>
         {% endfor %}
     </div>
-
 
 {% endblock %}

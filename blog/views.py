@@ -45,7 +45,7 @@ def register(request):
             ret["status"] = 1
             ret["msg"] = form_obj.errors
             return JsonResponse(ret)
-        # 生成一个form对象
+    # 生成一个form对象
     form_obj = forms.RegForm()
     print(form_obj.fields)
     return render(request, "register.html", {"form_obj": form_obj})
@@ -60,7 +60,7 @@ def check_username_exist(request):
     if is_exist:
         ret["status"] = 1
         ret["msg"] = "用户名已被注册"
-    return JsonResponse
+    return JsonResponse(ret)
 
 
 # 登录函数
@@ -98,7 +98,7 @@ def login(request):
         else:
             ret["status"] = 1
             ret["msg"] = "验证码错误"
-        return JsonResponse
+        return JsonResponse(ret)
     return render(request, "login2.html")
 
 
@@ -136,7 +136,7 @@ def get_valid_img(request):
     for i in range(5):
         u = chr(random.randint(65, 90))  # 生成大写字母
         l = chr(random.randint(97, 122))  # 生成小写字母
-        n = chr(random.randint(0, 9))  # 生成数字，要转换成字符串类型
+        n = str(random.randint(0, 9))  # 生成数字，要转换成字符串类型
         tmp = random.choice([u, l, n])
         tmp_list.append(tmp)
         draw_obj.text((20 + 40 * i, 0), tmp, fill=get_random_color(), font=font_obj)
@@ -152,7 +152,7 @@ def get_valid_img(request):
     img_obj.save(io_obj, "png")
     # 从io对象中取上一步保存的图片数据
     data = io_obj.getvalue()
-    return HttpResponse
+    return HttpResponse(data)
 
 
 # 处理获取到的验证码-图片函数
@@ -186,7 +186,7 @@ def home(request, username, *args):
         if args[0] == "category":
             article_list = models.Article.objects.filter(user=user).filter(category_title=args[1])
         elif args[0] == "tag":
-            article_list = models.Article.objects.filter(user=user).filter(tag_title=args[1])
+            article_list = models.Article.objects.filter(user=user).filter(tags_title=args[1])
         else:
             # 按照日期归档
             try:
@@ -225,6 +225,7 @@ def article_detail(request, username, pk):
     return render(request, "article_detail.html", {
         "username": username,
         "article": article_obj,
+        "blog": blog,
         "comment_list": comment_list
     })
 
@@ -280,12 +281,12 @@ def comment(request):
     response["content"] = comment_obj.content
     response["username"] = comment_obj.user.username
 
-    return JsonResponse
+    return JsonResponse(response)
 
 
 # 回复评论的评论树函数
 def comment_tree(request, article_id):
-    ret = list(models.Comment.objects.first(article_id=article_id).values("pk", "content", "parent_comment_id"))
+    ret = list(models.Comment.objects.filter(article_id=article_id).values("pk", "content", "parent_comment_id"))
     return JsonResponse(ret, safe=False)
 
 
@@ -314,14 +315,16 @@ def add_article(request):
 
 # 上传函数
 def upload(request):
-    obj = request.FILES.get('upload_img')
+    print(request.FILES)
+    obj = request.FILES.get("upload_img")
     print("name", obj.name)
     path = os.path.join(settings.MEDIA_ROOT, "add_article_img", obj.name)
-
     with open(path, "wb") as f:
         for line in obj:
             f.write(line)
-
-    res = {"error": 0, "url": "/media/add_article_img" + obj.name}
+    res = {
+        "error": 0,
+        "url": "/media/add_article_img/" + obj.name
+    }
 
     return HttpResponse(json.dumps(res))

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% block paga-main %}
     <div class="article-detail">
         <h1>{{ article.title }}</h1>
@@ -34,7 +35,8 @@
                 </div>
                 {% if comment.parent_comment_id %}
                     <div class="pid_info well">
-                        <p>{{ commrnt.parent_comment.user }}:&nbsp;&nbsp;&nbsp;{{ comment.parent_comment.comment }}</p>
+                        <p>{{ commrnt.parent_comment.user.username }}:
+                            &nbsp;&nbsp;&nbsp;{{ comment.parent_comment.content }}</p>
                     </div>
                 {% endif %}
 
@@ -90,7 +92,7 @@
             $.ajax({
                 url: "/blog/comment/",
                 type:"post",
-                data:{
+                data: {
                     article_id:article_id,
                     content:content,
                     pid:pid,
@@ -101,7 +103,7 @@
                     var create_time = data.create_time;
                     var content = data.content;
                     var username = data.username;
-                    var comment_li = '<li class="list-group-item"><div><span style="color:gray">' + create_time + '</span> &nbsp;&nbsp; <a href=""><span>' + username + '</span></a></div> <div class="con"> <p> ' + content + '</p></div></li>';
+                    var comment_li = '<li class="list-group-item"><div><span style="color: gray">' + create_time + '</span> &nbsp;&nbsp; <a href=""><span>' + username + '</span></a></div> <div class="con"> <p> ' + content + ' </p> </div> </li>';
                     $(".comment_list").append(comment_li);
                     $("#comment_content").val(''); // 清空文本框
                     pid = ""  // 清空pid
@@ -123,6 +125,7 @@
 
     <div class="info" article_id="{{ article.pk }}" username="{{ request.user.username }}"></div>
     {% csrf_token %}
+
     <script src="/static/js/article_detail.js"></script>
 
 {% endblock %}

@@ -27,7 +27,8 @@
 <div class="header"></div>
 <div class="content">
     <h3>添加文章</h3>
-    <form action="" method="post">{% csrf_token %}
+    <form action="" method="post">
+        {% csrf_token %}
         <div>
             <label for="">标题:</label>
             <input type="text" name="title" class="form-control" style="width:200px">
