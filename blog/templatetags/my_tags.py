@@ -21,7 +21,7 @@ def get_left_menu(username):
 
     return {
         "username": username,
-        "category_list" :category_list,
+        "category_list": category_list,
         "tag_list": tag_list,
         "archive_list": archive_list
     }
