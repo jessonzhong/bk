@@ -27,15 +27,14 @@
 <div class="header"></div>
 <div class="content">
     <h3>添加文章</h3>
-    <form action="" method="post">
-        {% csrf_token %}
+    <form action="" method="post">{% csrf_token %}
         <div>
-            <label for="">文章标题</label>
+            <label for="">标题:</label>
             <input type="text" name="title" class="form-control" style="width:200px">
         </div>
 
         <div>
-            <p>输入内容(支持拖放/粘贴上传图片) </p>
+            <p>输入内容(支持拖放/粘贴上传图片): </p><br>
             <textarea name="article_content" id="article_content" cols="60" rows="20"></textarea>
         </div>
         <input type="submit" class="btn btn-info">
