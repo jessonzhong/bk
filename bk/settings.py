@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = 'f7n$+=l+21&s5bvr63$b-jg41%#pns2rw8r*2be*km*&@g&i-1'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -71,7 +69,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'bk.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
@@ -85,7 +82,6 @@ DATABASES = {
         'PORT': 3306
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -105,7 +101,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -118,7 +113,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
@@ -179,35 +173,36 @@ LOGGING = {
             'class': 'logging.StreamHandler',  # 使用class类去处理日志流
             'formatter': 'simple'
         },
+
+
+        # 定义一个默认的日志处理器
+        'default': {
+            'level': 'INFO',
+            'class': 'logging.handlers.RotatingFileHandler',  # 保存到文件
+            'filename': os.path.join(BASE_LOG_DIR, "bk_info.log"),
+            'maxBytes': 1024 * 1024 * 50,  # 日志大小：50M
+            'backupCount': 5,  # 备份数量为5
+            'formatter': 'standard',
+            'encoding': 'utf-8',
+        },
+
+        # 定义一个专门收集错误日志的处理器
+        'error': {
+            'level': 'INFO',
+            'class': 'logging.handlers.RotatingFileHandler',  # 保存到文件
+            'filename': os.path.join(BASE_LOG_DIR, "bk_err.log"),
+            'maxBytes': 1024 * 1024 * 50,  # 日志大小：50M
+            'backupCount': 5,  # 备份数量为5
+            'formatter': 'standard',
+            'encoding': 'utf-8',
+        },
     },
 
-    # 定义一个默认的日志处理器
-    'default': {
-        'level': 'INFO',
-        'class': 'logging.handlers.RotatingFileHandler',  # 保存到文件
-        'filename': os.path.join(BASE_LOG_DIR, "bk_info.log"),
-        'maxBytes': 1024 * 1024 * 50,  # 日志大小：50M
-        'backupCount': 5,  # 备份数量为5
-        'formatter': 'standard',
-        'encoding': 'utf-8',
+    'loggers': {
+        '': {
+            'handlers': ['default', 'console', 'error'],
+            'level': 'DEBUG',
+            'propagate': True,  # 表示如果有父级的logger实例，要不要向上传递日志流
+        },
     },
-
-    # 定义一个专门收集错误日志的处理器
-    'error': {
-        'level': 'INFO',
-        'class': 'logging.handlers.RotatingFileHandler',  # 保存到文件
-        'filename': os.path.join(BASE_LOG_DIR, "bk_err.log"),
-        'maxBytes': 1024 * 1024 * 50,  # 日志大小：50M
-        'backupCount': 5,  # 备份数量为5
-        'formatter': 'standard',
-        'encoding': 'utf-8',
-    },
-
-    # 'loggers': {
-    #     '': {
-    #         'handlers': ['default', 'console', 'error'],
-    #         'level': 'DEBUG',
-    #         'propagate': True,  # 表示如果有父级的logger实例，要不要向上传递日志流
-    #     },
-    # },
 }

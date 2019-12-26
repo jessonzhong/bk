@@ -42,5 +42,5 @@ urlpatterns = [
     url(r'^media/(?P<path>.*)$', serve, {"document_root": settings.MEDIA_ROOT}),
 
     url(r'^upload/', views.upload),
-    url(r'^$/', views.index),
+    url(r'^$', views.index),
 ]

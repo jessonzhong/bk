@@ -1,0 +1,27 @@
+[2019-12-26 18:15:00,187][Thread-4:8108][task_id:django.request][exception.py:135][ERROR][Internal Server Error: /check_username_exist/]
+Traceback (most recent call last):
+  File "C:\Users\Jesson\AppData\Local\Programs\Python\Python36\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "C:\Users\Jesson\AppData\Local\Programs\Python\Python36\lib\site-packages\django\utils\deprecation.py", line 142, in __call__
+    response = self.process_response(request, response)
+  File "C:\Users\Jesson\AppData\Local\Programs\Python\Python36\lib\site-packages\django\middleware\clickjacking.py", line 32, in process_response
+    if response.get('X-Frame-Options') is not None:
+TypeError: get() missing 1 required positional argument: 'header'
+[2019-12-26 18:15:00,245][Thread-5:1668][task_id:django.request][exception.py:135][ERROR][Internal Server Error: /check_username_exist/]
+Traceback (most recent call last):
+  File "C:\Users\Jesson\AppData\Local\Programs\Python\Python36\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "C:\Users\Jesson\AppData\Local\Programs\Python\Python36\lib\site-packages\django\utils\deprecation.py", line 142, in __call__
+    response = self.process_response(request, response)
+  File "C:\Users\Jesson\AppData\Local\Programs\Python\Python36\lib\site-packages\django\middleware\clickjacking.py", line 32, in process_response
+    if response.get('X-Frame-Options') is not None:
+TypeError: get() missing 1 required positional argument: 'header'
+[2019-12-26 18:15:00,323][Thread-6:1708][task_id:django.request][exception.py:135][ERROR][Internal Server Error: /check_username_exist/]
+Traceback (most recent call last):
+  File "C:\Users\Jesson\AppData\Local\Programs\Python\Python36\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "C:\Users\Jesson\AppData\Local\Programs\Python\Python36\lib\site-packages\django\utils\deprecation.py", line 142, in __call__
+    response = self.process_response(request, response)
+  File "C:\Users\Jesson\AppData\Local\Programs\Python\Python36\lib\site-packages\django\middleware\clickjacking.py", line 32, in process_response
+    if response.get('X-Frame-Options') is not None:
+TypeError: get() missing 1 required positional argument: 'header'

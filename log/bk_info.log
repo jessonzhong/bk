@@ -1,0 +1,32 @@
+[2019-12-26 18:14:05,231][Thread-1:7120][task_id:django.request][base.py:152][WARNING][Not Found: /]
+[2019-12-26 18:15:00,187][Thread-4:8108][task_id:django.request][exception.py:135][ERROR][Internal Server Error: /check_username_exist/]
+Traceback (most recent call last):
+  File "C:\Users\Jesson\AppData\Local\Programs\Python\Python36\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "C:\Users\Jesson\AppData\Local\Programs\Python\Python36\lib\site-packages\django\utils\deprecation.py", line 142, in __call__
+    response = self.process_response(request, response)
+  File "C:\Users\Jesson\AppData\Local\Programs\Python\Python36\lib\site-packages\django\middleware\clickjacking.py", line 32, in process_response
+    if response.get('X-Frame-Options') is not None:
+TypeError: get() missing 1 required positional argument: 'header'
+[2019-12-26 18:15:00,245][Thread-5:1668][task_id:django.request][exception.py:135][ERROR][Internal Server Error: /check_username_exist/]
+Traceback (most recent call last):
+  File "C:\Users\Jesson\AppData\Local\Programs\Python\Python36\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "C:\Users\Jesson\AppData\Local\Programs\Python\Python36\lib\site-packages\django\utils\deprecation.py", line 142, in __call__
+    response = self.process_response(request, response)
+  File "C:\Users\Jesson\AppData\Local\Programs\Python\Python36\lib\site-packages\django\middleware\clickjacking.py", line 32, in process_response
+    if response.get('X-Frame-Options') is not None:
+TypeError: get() missing 1 required positional argument: 'header'
+[2019-12-26 18:15:00,323][Thread-6:1708][task_id:django.request][exception.py:135][ERROR][Internal Server Error: /check_username_exist/]
+Traceback (most recent call last):
+  File "C:\Users\Jesson\AppData\Local\Programs\Python\Python36\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "C:\Users\Jesson\AppData\Local\Programs\Python\Python36\lib\site-packages\django\utils\deprecation.py", line 142, in __call__
+    response = self.process_response(request, response)
+  File "C:\Users\Jesson\AppData\Local\Programs\Python\Python36\lib\site-packages\django\middleware\clickjacking.py", line 32, in process_response
+    if response.get('X-Frame-Options') is not None:
+TypeError: get() missing 1 required positional argument: 'header'
+[2019-12-26 18:15:04,179][Thread-7:11252][task_id:django.security.csrf][csrf.py:160][WARNING][Forbidden (CSRF token missing or incorrect.): /reg/]
+[2019-12-26 18:15:07,193][Thread-8:7632][task_id:django.security.csrf][csrf.py:160][WARNING][Forbidden (CSRF token missing or incorrect.): /reg/]
+[2019-12-26 18:15:07,363][Thread-9:4320][task_id:django.security.csrf][csrf.py:160][WARNING][Forbidden (CSRF token missing or incorrect.): /reg/]
+[2019-12-26 18:15:07,521][Thread-10:10460][task_id:django.security.csrf][csrf.py:160][WARNING][Forbidden (CSRF token missing or incorrect.): /reg/]

@@ -3,10 +3,13 @@ from blog import models, forms
 from django.http import JsonResponse
 from django.contrib import auth
 from django.db.models import Count
-import logging, os, json
+import logging
+import os
+import json
 from bk import settings
 from django.db.models import F
 from geetest import GeetestLib
+from django.views.decorators.csrf import csrf_exempt
 
 pc_geetest_id = "b46d1900d0a894591916ea94ea91bd2c"
 pc_geetest_key = "36fc3fe98530eea08dfc6ce76e3d24c4"
@@ -20,10 +23,10 @@ logger = logging.getLogger(__name__)
 
 
 # 注册函数
+@csrf_exempt
 def register(request):
     if request.method == "POST":
         print(request.POST)
-        print("=" * 100)
         ret = {"status": 0, "msg": ""}
         form_obj = forms.RegForm(request.POST)
         print(request.POST)
@@ -36,14 +39,12 @@ def register(request):
             avatar_img = request.FILES.get("avatar")
             models.UserInfo.objects.create_user(**form_obj.cleaned_data, avatar=avatar_img)
             ret["msg"] = "/index/"
-            return JsonResponse
+            return JsonResponse(ret)
         else:
             print(form_obj.errors)
             ret["status"] = 1
             ret["msg"] = form_obj.errors
-            print(ret)
-            print("=" * 100)
-            return JsonResponse
+            return JsonResponse(ret)
         # 生成一个form对象
     form_obj = forms.RegForm()
     print(form_obj.fields)

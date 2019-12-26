@@ -82,7 +82,7 @@
         $("#comment_btn").click(function () {
             var article_id = $(".info").attr("article_id");
             var content = $("#comment_content").val();
-            if (pad) {
+            if (pid) {
                 var index = content.indexOf("\n");
                 content = content.slice(index + 1)
             }
