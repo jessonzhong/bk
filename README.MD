@@ -95,3 +95,6 @@ pip install beautifulsoup4
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login2.html  
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;register.html  
  ---
+ 基本实现登录注册注销功能，  
+ 这是对自己这半年学习成果的最大检验；  
+ 我始终坚信，解决问题的办法总比问题多
