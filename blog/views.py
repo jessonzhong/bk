@@ -202,7 +202,7 @@ def home(request, username, *args):
     return render(request, "home.html", {
         "username": username,
         "blog": blog,
-        "article_list": article_list
+        "article_list": article_list,
     })
 
 
