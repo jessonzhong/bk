@@ -39,7 +39,7 @@ pip install beautifulsoup4
 - 使用git进行版本控制
 
 ---
-项目目录结构
+项目目录结构  
  .  
 │  README.MD  
 │  manage.py  
