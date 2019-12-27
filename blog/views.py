@@ -9,7 +9,6 @@ import json
 from bk import settings
 from django.db.models import F
 from geetest import GeetestLib
-from django.views.decorators.csrf import csrf_exempt
 
 pc_geetest_id = "b46d1900d0a894591916ea94ea91bd2c"
 pc_geetest_key = "36fc3fe98530eea08dfc6ce76e3d24c4"
@@ -23,7 +22,6 @@ logger = logging.getLogger(__name__)
 
 
 # 注册函数
-@csrf_exempt
 def register(request):
     if request.method == "POST":
         print(request.POST)
