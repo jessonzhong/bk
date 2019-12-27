@@ -40,7 +40,7 @@ pip install beautifulsoup4
 
 ---
 运行demo  
-[image]https://github.com/jessonzhong/bk/blob/master/images/demo.png
+![image](https://github.com/jessonzhong/bk/blob/master/images/demo.png)
 
 ---
 目录结构  
