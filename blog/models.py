@@ -7,7 +7,7 @@ from django.contrib.auth.models import AbstractUser
 # 用户信息表
 class UserInfo(AbstractUser):
     nid = models.AutoField(primary_key=True)
-    phone = models.CharField(max_length=11, null=True, unique=True)
+    phone = models.CharField(max_length=11, null=True, unique=True, verbose_name="电话")
     avatar = models.FileField(upload_to="avatars/", default="avatars/default.png", verbose_name="头像")
     create_time = models.DateTimeField(auto_now_add=True)
 
@@ -24,9 +24,9 @@ class UserInfo(AbstractUser):
 # 博客信息表
 class Blog(models.Model):
     nid = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=64)  # 个人博客标题
-    site = models.CharField(max_length=32, unique=True)  # 个人博客后缀
-    theme = models.CharField(max_length=32)  # 博客主题
+    title = models.CharField(max_length=64, verbose_name="博客标题")  # 个人博客标题
+    site = models.CharField(max_length=32, unique=True, verbose_name="博客后缀")  # 个人博客后缀
+    theme = models.CharField(max_length=32, verbose_name="主题")  # 博客主题
 
     def __str__(self):
         return self.title
@@ -39,7 +39,7 @@ class Blog(models.Model):
 # 个人博客分类表
 class Category(models.Model):
     nid = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=32)  # 分类标题
+    title = models.CharField(max_length=32, verbose_name="分类标题")  # 分类标题
     blog = models.ForeignKey(to="Blog", to_field="nid")  # 外键关联博客，一个博客站点可以有多个分类
 
     def __str__(self):
@@ -53,8 +53,8 @@ class Category(models.Model):
 # 标签表
 class Tag(models.Model):
     nid = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=32)  # 标签名
-    blog = models.ForeignKey(to="Blog", to_field="nid")  # 所属博客
+    title = models.CharField(max_length=32, verbose_name="标签名")  # 标签名
+    blog = models.ForeignKey(to="Blog", to_field="nid", verbose_name="所属Blog")  # 所属博客
 
     def __str__(self):
         return self.title
@@ -68,7 +68,7 @@ class Tag(models.Model):
 class Article(models.Model):
     nid = models.AutoField(primary_key=True)
     title = models.CharField(max_length=50, verbose_name="文章标题")  # 文章标题
-    desc = models.CharField(max_length=255)  # 文章描述
+    desc = models.CharField(max_length=255, verbose_name="文章简介")  # 文章描述
     create_time = models.DateTimeField(auto_now_add=True)  # 创建时间  --> datetime()
 
     # 评论数
@@ -78,8 +78,8 @@ class Article(models.Model):
     # 踩
     down_count = models.IntegerField(verbose_name="踩数", default=0)
 
-    category = models.ForeignKey(to="Category", to_field="nid", null=True)
-    user = models.ForeignKey(to="UserInfo", to_field="nid")
+    category = models.ForeignKey(to="Category", to_field="nid", null=True, verbose_name="类别")
+    user = models.ForeignKey(to="UserInfo", to_field="nid", verbose_name="用户")
     tags = models.ManyToManyField(  # 中介模型
         to="Tag",
         through="Article2Tag",
@@ -108,8 +108,8 @@ class ArticleDetail(models.Model):
 # 文章和标签的多对多表
 class Article2Tag(models.Model):
     nid = models.AutoField(primary_key=True)
-    article = models.ForeignKey(to="Article", to_field="nid")
-    tag = models.ForeignKey(to="Tag", to_field="nid")
+    article = models.ForeignKey(to="Article", to_field="nid", verbose_name="文章")
+    tag = models.ForeignKey(to="Tag", to_field="nid", verbose_name="标签")
 
     def __str__(self):
         return "{}-{}".format(self.article.title, self.tag.title)
@@ -123,8 +123,8 @@ class Article2Tag(models.Model):
 # 点赞表
 class ArticleUpDown(models.Model):
     nid = models.AutoField(primary_key=True)
-    user = models.ForeignKey(to="UserInfo", null=True)
-    article = models.ForeignKey(to="Article", null=True)
+    user = models.ForeignKey(to="UserInfo", null=True, verbose_name="用户")
+    article = models.ForeignKey(to="Article", null=True, verbose_name="文章")
     is_up = models.BooleanField(default=True)
 
     class Meta:
@@ -136,9 +136,9 @@ class ArticleUpDown(models.Model):
 # 评论表
 class Comment(models.Model):
     nid = models.AutoField(primary_key=True)
-    article = models.ForeignKey(to="Article", to_field="nid")
-    user = models.ForeignKey(to="UserInfo", to_field="nid")
-    content = models.CharField(max_length=255)  # 评论内容
+    article = models.ForeignKey(to="Article", to_field="nid", verbose_name="文章")
+    user = models.ForeignKey(to="UserInfo", to_field="nid", verbose_name="用户")
+    content = models.CharField(max_length=255, verbose_name="评论内容")  # 评论内容
     create_time = models.DateTimeField(auto_now_add=True)
     parent_comment = models.ForeignKey("self", null=True, blank=True)  # blank=True 在django admin里面可以不填
 
